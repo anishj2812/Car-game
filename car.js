@@ -1,4 +1,5 @@
 let arr=[[0,0,0],[0,0,0],[0,0,0],[0,1,0]];
+let cars=["","","&#128650","&#128664","&#128660","&#9940","&#128679","&#128762","&#128024","&#128046"];
 let over=0;
 let mySound= new Audio('mixkit_car_ignition_1535.mp3');
 let gameOverSound= new Audio('gameOver.wav');
@@ -10,10 +11,16 @@ let changeHighscore=document.getElementById("highscore");
 changeHighscore.innerHTML="Highscore : "+localStorage.getItem("highscore");
 function st(){
     let flag=0;
+    // if((score+1)%1000==0)
+    // {
+    //     clearInterval(clr);
+    //     clr=setInterval(st,100);
+    //     //  clearInterval(clr);
+    // }
     for(let i=0;i<3;i++)
     {
         console.log(arr[3]+" "+arr[2]);
-        if(arr[3][i]==1 && arr[2][i]==2)
+        if(arr[3][i]==1 && arr[2][i]>=2)
         {
             gameOver();
             clearInterval(sound);
@@ -34,15 +41,17 @@ function st(){
     arr[0][0]=0;
     arr[0][1]=0;
     arr[0][2]=0;
-    arr[0][x]=2;
+    let z=Math.floor(Math.random()*8)+2;
+    arr[0][x]=z;
     //console.log(x); 
     for(let i=0;i<=3;i++)
     {
-        if(arr[i][0]==2)
+        if(arr[i][0]>=2)
         {
             let s=(i+1).toString()+'1';
             let pos=document.getElementById(s);
-            pos.innerHTML="&#128664";
+            
+            pos.innerHTML=cars[arr[i][0]];
             pos.style.color="red";
         }
         else
@@ -51,11 +60,11 @@ function st(){
             let pos=document.getElementById(s);
             pos.innerHTML="";
         }
-        if(arr[i][1]==2)
+        if(arr[i][1]>=2)
         {
             let s=(i+1).toString()+'2';
             let pos=document.getElementById(s);
-            pos.innerHTML="&#128650";
+            pos.innerHTML=cars[arr[i][1]];
             pos.style.color="green";
             // pos.style.color="white";
         }
@@ -65,11 +74,11 @@ function st(){
             let pos=document.getElementById(s);
             pos.innerHTML="";
         }
-        if(arr[i][2]==2)
+        if(arr[i][2]>=2)
         {
             let s=(i+1).toString()+'3';
             let pos=document.getElementById(s);
-            pos.innerHTML="&#128660";
+            pos.innerHTML=cars[arr[i][2]];
             pos.style.color="blue";
             // pos.style.color="white";
         }
@@ -105,6 +114,32 @@ again.addEventListener('click',()=>{
 // document.addEventListener('click',()=>{
     
 // })
+let left=document.getElementById("left");
+left.addEventListener('click',()=>{
+    for(let i=1;i<3;i++)
+    {
+        if(arr[3][i]==1)
+        {
+            //console.log(i+" ");
+            arr[3][i-1]=1;
+            arr[3][i]=0;
+            break;
+        }
+    }
+})
+let right=document.getElementById("right");
+right.addEventListener('click',()=>{
+    for(let i=0;i<2;i++)
+    {
+        if(arr[3][i]==1)
+        {
+            console.log(i+" ");
+            arr[3][i+1]=1;
+            arr[3][i]=0;
+            break;
+        }
+    }
+})
 document.addEventListener('keydown',(event)=>{
     // console.log(event.key);
     // console.log(event.key);
@@ -138,6 +173,7 @@ document.addEventListener('keydown',(event)=>{
 function gameOver(){
     let contain=document.getElementById("contain");
     contain.innerHTML="Game Over";
+    contain.style.blockSize;
     contain.style.color="red";
     clearInterval(sound);
     gameOverSound.play();
@@ -149,7 +185,7 @@ function gameOver(){
     }
     else
     {
-        changeHighscore.style.color="white";
+        changeHighscore.style.color="black";
     }
     highscore=Math.max(highscore,score);
     localStorage.setItem("highscore",highscore);
@@ -169,6 +205,7 @@ start.addEventListener('click',()=>{
         mySound.play();
     },10)
     clr=setInterval(st,1000);
+    
 })
 // let check=document.getElementById("body");
 setInterval(()=>{

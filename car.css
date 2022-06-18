@@ -1,8 +1,10 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: black;
+    /* background-color: black; */
     font-family:cursive;
+    /* background-image: url("carGame.jpg") width:10px ; */
+    background-repeat: no-repeat;
 }
 td{
     border: 2px solid white;
@@ -11,15 +13,18 @@ td{
     text-align: center;
     font-size: xx-large;
     color: white;
+    /* background-image: url("carGame.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; */
 }
 /* td:hover{
     background-color: rgb(114, 106, 106);
 } */
 #score{
-    color:white;
+    color:black;
 }
 #highscore{
-    color:white;
+    color:black;
 }
 body{
     height: 100vh;
@@ -30,6 +35,9 @@ body{
     align-items: center;
     justify-content:center;
     flex-direction: column;
+    background-image: url("carGame.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     /* display: block;
     position: relative;
     left: 600px;
@@ -53,11 +61,12 @@ button{
     position: relative;
     left: 640px;
     top:210px; */
-    margin: 2px;
+    margin: 10px;
+    /* padding: 1px; */
     font-size: large;
     border: 2px solid white;
-    /* color: white; */
-    background-color: white;
+    color: white;
+    background-color: black;
 }
 table{
     /* display:block;
@@ -78,4 +87,19 @@ table{
     font-size: xx-large;
     margin: 10px;
     color: white
+}
+#left{
+    
+    /* margin:10px; */
+    margin-right: 110px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#right{
+    margin-left:100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#again{
+    margin:10px;
 }
